@@ -23,9 +23,20 @@ sudo apt-get install -y libeigen3-dev
 yes | sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
 sudo apt-get install -y libmosquitto-dev
 
+#install eigen3
+wget http://bitbucket.org/eigen/eigen/get/3.2.8.tar.gz
+tar xzf 3.2.8.tar.gz
+rm 3.2.8.tar.gz
+cd eigen-eigen-07105f7124f9
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/local
+make install
+
 cd ~/
 git clone https://github.com/CPFL/Autoware.git
 cd ~/Autoware/ros/src
+catkin_make --pkg orb_localizer
 catkin_init_workspace
 cd ../
 ./catkin_make_release
