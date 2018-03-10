@@ -35,11 +35,17 @@ make install
 
 cd ~/
 git clone https://github.com/CPFL/Autoware.git
+git checkout devel
 cd ~/Autoware/ros/src
-catkin_make --pkg orb_localizer
+# chmod +x util/packages/kitti_pkg/kitti_player/cfg/kitti_player.cfg
+# chmod +x sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud/cfg/VelodyneConfig.cfg
 catkin_init_workspace
 cd ../
-./catkin_make_release
+
+# catkin_make --pkg orb_localizer
+# ./catkin_make_release
+# ./catkin_make_release --make-args -j3
+
 
 # echo "alias Autoware=~/Autoware/ros/./run" >> ~/.bashrc
 
