@@ -43,7 +43,7 @@ catkin_init_workspace
 cd ../
 
 # catkin_make --pkg orb_localizer
-# ./catkin_make_release
+./catkin_make_release
 # ./catkin_make_release --make-args -j3
 
 
