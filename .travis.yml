@@ -20,7 +20,7 @@ install:
   - export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
 
 script: 
-  - ls /usr/share/cmake-*
+  - find /usr/share -name "FindEigen3.cmake"
   # - cd
   # - git clone https://github.com/grassjelly/autoware_install
   # - cd autoware_install
