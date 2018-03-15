@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+find /usr/share -name "FindEigen3.cmake"
+ls /usr/share/cmake*
 sudo apt-get install -y libeigen3-dev
 cp $(find /usr/share -name "FindEigen3.cmake") /usr/share/usr/share/cmake-3.2/Modules/
 
