@@ -18,9 +18,9 @@ install:
   - rosdep install --default-yes --from-paths . --ignore-src --rosdistro $ROSDISTRO
   - source /opt/ros/indigo/setup.bash
   - export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
-  - ls /usr/share/cmake-*
 
 script: 
+  - ls /usr/share/cmake-*
   # - cd
   # - git clone https://github.com/grassjelly/autoware_install
   # - cd autoware_install
