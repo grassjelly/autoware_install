@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e
+
+ROSVERSION=$(rosversion -d)
+
+if [ $ROSVERSION != "indigo" ] && [ $ROSVERSION != "kinetic" ] 
+    then
+        echo "Your version of ROS is not supported. Exiting now!"
+        exit 1
+fi
+
+sudo apt-get install -y ros-$ROSVERSION-desktop-full ros-$ROSVERSION-nmea-msgs ros-$ROSVERSION-nmea-navsat-driver ros-$ROSVERSION-sound-play ros-$ROSVERSION-jsk-visualization ros-$ROSVERSION-grid-map ros-$ROSVERSION-gps-common
+sudo apt-get install -y ros-$ROSVERSION-controller-manager ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers ros-$ROSVERSION-gazebo-ros-control ros-$ROSVERSION-sicktoolbox ros-$ROSVERSION-sicktoolbox-wrapper ros-$ROSVERSION-joystick-drivers ros-$ROSVERSION-novatel-span-driver
+sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev software-properties-common libyaml-cpp-dev python-flask python-requests
+sudo apt-get install -y ros-$ROSVERSION-pcl-ros
+
+yes | sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
+sudo apt-get install -y libmosquitto-dev
+
+cd ~/
+git clone https://github.com/CPFL/Autoware.git
+git checkout devel
+cd ~/Autoware/ros/src
+catkin_init_workspace
+cd ../
+
+./catkin_make_release
+
+echo "alias Autoware=~/Autoware/ros/./run" >> ~/.bashrc
+
+echo "Autoware Installation Done!"
+
