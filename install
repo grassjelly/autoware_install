@@ -15,7 +15,7 @@ sudo apt-get install -y ros-$ROSVERSION-controller-manager ros-$ROSVERSION-ros-c
 sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev software-properties-common libyaml-cpp-dev python-flask python-requests
 sudo apt-get install -y ros-$ROSVERSION-pcl-ros
 
-yes | sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
+sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
 sudo apt-get install -y libmosquitto-dev
 
 cd ~/
