@@ -23,7 +23,7 @@ script:
   - cd
   - git clone https://github.com/grassjelly/autoware_install
   - cd autoware_install
-  - ./install.sh
+  - ./install
 
 notifications:
   email:
