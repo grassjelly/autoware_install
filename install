@@ -68,5 +68,5 @@ echo $CMAKEVER
 CMAKEPATH=$(ls /usr/share/cmake*)
 echo $CMAKEPATH
 
-CMAKEPATH=$(ls /usr/local/cmake*)
+CMAKEPATH=$(ls /usr/local/cmake-3.9.2/Modules)
 echo $CMAKEPATH
