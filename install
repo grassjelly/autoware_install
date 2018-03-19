@@ -23,21 +23,23 @@ else
     exit 1
 fi
 
-EIGEN=$(sudo find / -name 'FindEigen3.cmake')
-# cp $EIGEN /usr/local/share/cmake-3*/Modules/
-
 cd $HOME
 git clone https://github.com/CPFL/Autoware.git
 cd Autoware
 git checkout develop
 
+#deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
+rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
+
 cd $HOME/Autoware/ros/src
-# echo "-DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/" >> catkin_init_workspace
 catkin_init_workspace 
 cd ../
 
 # ./catkin_make_release
-#!/usr/bin/env bash
+
+#look for Eigen3 cmake file
+EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' -printf '%h\n')
+echo $EIGENPATH
 
 if [[ -d build ]]; then
     rm -rf build
@@ -47,13 +49,11 @@ if [[ -d devel ]]; then
     rm -rf devel
 fi
 
-catkin_make clean -DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/
+catkin_make clean -DCMAKE_MODULE_PATH=$EIGENPATH
 source devel/setup.bash
 
 export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
 catkin_make -DCMAKE_BUILD_TYPE=Release $@
-
-
 
 echo "alias Autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
