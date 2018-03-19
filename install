@@ -31,12 +31,30 @@ git clone https://github.com/CPFL/Autoware.git
 cd Autoware
 git checkout develop
 
-cd $HOME/Autoware/ros
+cd $HOME/Autoware/ros/src
 # echo "-DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/" >> catkin_init_workspace
 catkin_init_workspace 
 cd ../
 
-./catkin_make_release
+# ./catkin_make_release
+#!/usr/bin/env bash
+set -e
+
+if [[ -d build ]]; then
+    rm -rf build
+fi
+
+if [[ -d devel ]]; then
+    rm -rf devel
+fi
+
+catkin_make clean -DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/
+source devel/setup.bash
+
+export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
+catkin_make -DCMAKE_BUILD_TYPE=Release $@
+
+
 
 echo "alias Autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
