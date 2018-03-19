@@ -24,7 +24,7 @@ else
 fi
 
 EIGEN=$(sudo find / -name 'FindEigen3.cmake')
-echo $EIGEN
+cp $EIGEN /usr/share/cmake-*/Modules/
 
 cd $HOME
 git clone https://github.com/CPFL/Autoware.git
@@ -32,7 +32,7 @@ cd Autoware
 git checkout develop
 
 cd $HOME/Autoware/ros/src
-catkin_init_workspace -DCMAKE_MODULE_PATH=$EIGEN
+catkin_init_workspace 
 cd ../
 
 ./catkin_make_release
