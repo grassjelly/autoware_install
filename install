@@ -26,7 +26,7 @@ fi
 cd $HOME
 git clone https://github.com/CPFL/Autoware.git
 cd Autoware
-git checkout develop
+# git checkout develop
 
 #deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
 rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
@@ -55,7 +55,7 @@ source devel/setup.bash
 export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
 catkin_make -DCMAKE_BUILD_TYPE=Release $@
 
-echo "alias Autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
+echo "alias autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
 echo "Autoware Installation Done!"
 
