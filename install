@@ -25,7 +25,9 @@ fi
 
 cd ~/
 git clone https://github.com/CPFL/Autoware.git
+cd Autoware
 git checkout developer
+
 cd ~/Autoware/ros/src
 catkin_init_workspace
 cd ../
