@@ -43,7 +43,7 @@ EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' | head -1)
 
 echo $EIGENPATH
 sudo mkdir /usr/local/cmake-3.9.2/Modules
-cp $EIGENPATH /usr/local/cmake-3.9.2
+sudo cp $EIGENPATH /usr/local/cmake-3.9.2/Modules
 
 if [[ -d build ]]; then
     rm -rf build
