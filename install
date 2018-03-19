@@ -1,61 +1,66 @@
 #!/usr/bin/env bash
 
-set -e
+# set -e
 
-ROSVERSION=$(rosversion -d)
+# ROSVERSION=$(rosversion -d)
 
-if [ $ROSVERSION == "indigo" ]
-    then
-        sudo apt-get install -y ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play ros-indigo-jsk-visualization ros-indigo-grid-map ros-indigo-gps-common
-        sudo apt-get install -y ros-indigo-controller-manager ros-indigo-ros-control ros-indigo-ros-controllers ros-indigo-gazebo-ros-control ros-indigo-sicktoolbox ros-indigo-sicktoolbox-wrapper ros-indigo-joystick-drivers ros-indigo-novatel-span-driver
-        sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev software-properties-common libyaml-cpp-dev python-flask python-requests
-        # yes | sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
-        # sudo apt-get install -y libmosquitto-dev
+# if [ $ROSVERSION == "indigo" ]
+#     then
+#         sudo apt-get install -y ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play ros-indigo-jsk-visualization ros-indigo-grid-map ros-indigo-gps-common
+#         sudo apt-get install -y ros-indigo-controller-manager ros-indigo-ros-control ros-indigo-ros-controllers ros-indigo-gazebo-ros-control ros-indigo-sicktoolbox ros-indigo-sicktoolbox-wrapper ros-indigo-joystick-drivers ros-indigo-novatel-span-driver
+#         sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev software-properties-common libyaml-cpp-dev python-flask python-requests
+#         # yes | sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
+#         # sudo apt-get install -y libmosquitto-dev
 
-elif [ $ROSVERSION == "kinetic" ]
-    then
-        sudo apt-get install -y ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common
-        sudo apt-get install -y ros-kinetic-controller-manager ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-gazebo-ros-control ros-kinetic-joystick-drivers
-        sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev python-wxgtk3.0 software-properties-common libmosquitto-dev libyaml-cpp-dev python-flask python-requests
+# elif [ $ROSVERSION == "kinetic" ]
+#     then
+#         sudo apt-get install -y ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common
+#         sudo apt-get install -y ros-kinetic-controller-manager ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-gazebo-ros-control ros-kinetic-joystick-drivers
+#         sudo apt-get install -y libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev python-wxgtk3.0 software-properties-common libmosquitto-dev libyaml-cpp-dev python-flask python-requests
 
-else
-    echo "Your ROS version is not supported. Exiting now!"
-    exit 1
-fi
+# else
+#     echo "Your ROS version is not supported. Exiting now!"
+#     exit 1
+# fi
 
-cd $HOME
-git clone https://github.com/CPFL/Autoware.git
-cd Autoware
-# git checkout develop
+# cd $HOME
+# git clone https://github.com/CPFL/Autoware.git
+# cd Autoware
+# # git checkout develop
 
-#deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
-rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
+# #deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
+# rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
 
-cd $HOME/Autoware/ros/src
-catkin_init_workspace 
-cd ../
+# cd $HOME/Autoware/ros/src
+# catkin_init_workspace 
+# cd ../
 
-# ./catkin_make_release
+# # ./catkin_make_release
 
-#look for Eigen3 cmake file
-EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' -printf '%h\n')
-echo $EIGENPATH
+# #look for Eigen3 cmake file
+# EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' -printf '%h\n')
+# echo $EIGENPATH
 
-if [[ -d build ]]; then
-    rm -rf build
-fi
+# if [[ -d build ]]; then
+#     rm -rf build
+# fi
 
-if [[ -d devel ]]; then
-    rm -rf devel
-fi
+# if [[ -d devel ]]; then
+#     rm -rf devel
+# fi
 
-catkin_make clean -DCMAKE_MODULE_PATH=$EIGENPATH
-source devel/setup.bash
+# catkin_make clean -DCMAKE_MODULE_PATH=$EIGENPATH
+# source devel/setup.bash
 
-export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
-catkin_make -DCMAKE_BUILD_TYPE=Release $@
+# export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
+# catkin_make -DCMAKE_BUILD_TYPE=Release $@
 
-echo "alias autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
+# echo "alias autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
-echo "Autoware Installation Done!"
+# echo "Autoware Installation Done!"
 
+CMAKEVER=$(cmake --version | grep version | tail -c 6 | cut -c -3)
+
+CMAKEPATH=$(locate cmake-$CMAKEVER/Modules | head -1)
+
+echo $CMAKEPATH
