@@ -10,7 +10,7 @@ if [ ! -d "$HOME/Autoware" ];
         exit 1
 fi
 
-cd ~/
+cd $HOME/
 mkdir .autoware -p && cd .autoware
 wget http://db3.ertl.jp/autoware/sample_data/my_launch.sh
 wget http://db3.ertl.jp/autoware/sample_data/sample_moriyama_data.tar.gz
