@@ -24,7 +24,7 @@ else
 fi
 
 EIGEN=$(sudo find / -name 'FindEigen3.cmake')
-cp $EIGEN /usr/share/cmake-*/Modules/
+cp $EIGEN /usr/share/cmake-3*/Modules/
 
 cd $HOME
 git clone https://github.com/CPFL/Autoware.git
