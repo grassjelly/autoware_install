@@ -31,8 +31,8 @@ git clone https://github.com/CPFL/Autoware.git
 cd Autoware
 git checkout develop
 
-cd $HOME/Autoware/ros/src
-echo "-DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/" >> catkin_init_workspace
+cd $HOME/Autoware/ros
+# echo "-DCMAKE_MODULE_PATH=/usr/share/cmake-2.8/Modules/" >> catkin_init_workspace
 catkin_init_workspace 
 cd ../
 
