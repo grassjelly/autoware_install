@@ -61,12 +61,12 @@
 
 CMAKEVER=$(cmake --version | grep version | tail -c 6 | cut -c -3)
 
-# CMAKEPATH=$(locate cmake-$CMAKEVER/Modules | head -1)
+# CMAKEPATH=$(locate cmake-$CMAKEVER*/Modules | head -1)
 
 echo $CMAKEVER
 
 CMAKEPATH=$(ls /usr/share/cmake*)
 echo $CMAKEPATH
 
-CMAKEPATH=$(ls /usr/local/cmake-3.9.2/Modules)
+CMAKEPATH=$(ls /usr/local/cmake-3.9.2/)
 echo $CMAKEPATH
