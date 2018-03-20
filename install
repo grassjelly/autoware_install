@@ -30,6 +30,7 @@ cd Autoware
 
 #deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
 rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
+rm -rf $HOME/Autoware/ros/src/sensing/drivers/imu/packages/xsens
 
 cd $HOME/Autoware/ros/src
 catkin_init_workspace 
