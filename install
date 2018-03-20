@@ -51,8 +51,7 @@ if [[ -d devel ]]; then
     rm -rf devel
 fi
 
-sudo ln -s $EIGENPATH /usr/share/cmake-3.9.2/Modules/FindEigen3.cmake
-
+cp $EIGENPATH $HOME/Autoware/ros/src/computing/planning/common/lib/openplanner/op_simu/
 catkin_make clean 
 # catkin_make clean
 source devel/setup.bash
