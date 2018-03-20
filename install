@@ -51,16 +51,20 @@ if [[ -d devel ]]; then
     rm -rf devel
 fi
 
+sudo ln -s $EIGENPATH /usr/share/cmake-3.9.2/Modules/FindEigen3.cmake
+
 catkin_make clean 
 # catkin_make clean
 source devel/setup.bash
 
 export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
-catkin_make -DCMAKE_BUILD_TYPE=Release $@ -DCMAKE_MODULE_PATH=$EIGENPATH
+catkin_make -DCMAKE_BUILD_TYPE=Release $@ 
 
 echo "alias autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
 echo "Autoware Installation Done!"
+
+
 
 # CMAKEVER=$(cmake --version | grep version | tail -c 6 | cut -c -3)
 
