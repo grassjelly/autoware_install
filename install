@@ -39,7 +39,9 @@ cd ../
 # ./catkin_make_release
 
 #look for Eigen3 cmake file
-EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' -printf '%h\n'  | head -1)
+# EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' -printf '%h\n'  | head -1)
+EIGENPATH=$(sudo find / -name 'FindEigen3.cmake' | head -1)
+
 echo $EIGENPATH
 
 
