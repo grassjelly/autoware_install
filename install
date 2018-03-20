@@ -29,8 +29,8 @@ cd Autoware
 # git checkout develop
 
 #deleting ymc driver as mentioned here: https://github.com/CPFL/Autoware/issues/1150
-rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
-rm -rf $HOME/Autoware/ros/src/sensing/drivers/imu/packages/xsens
+#rm -rf $HOME/Autoware/ros/src/actuation/vehicles/packages/ymc
+#rm -rf $HOME/Autoware/ros/src/sensing/drivers/imu/packages/xsens
 
 cd $HOME/Autoware/ros/src
 catkin_init_workspace 
@@ -51,12 +51,12 @@ if [[ -d devel ]]; then
     rm -rf devel
 fi
 
-catkin_make clean -DCMAKE_MODULE_PATH=$EIGENPATH
+catkin_make clean 
 # catkin_make clean
 source devel/setup.bash
 
 export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH
-catkin_make -DCMAKE_BUILD_TYPE=Release $@
+catkin_make -DCMAKE_BUILD_TYPE=Release $@ -DCMAKE_MODULE_PATH=$EIGENPATH
 
 echo "alias autoware=$HOME/Autoware/ros/./run" >> $HOME/.bashrc
 
